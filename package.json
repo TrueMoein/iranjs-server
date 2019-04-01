@@ -1,0 +1,94 @@
+{
+  "name": "iranjs",
+  "version": "1.0.0",
+  "description": "Express API ES6 Starter",
+  "scripts": {
+    "start": "node dist",
+    "prestart": "npm run build",
+    "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix",
+    "codecov": "cat coverage/*/lcov.info | codecov",
+    "seed": "knex seed:run --knexfile src/knexfile.js",
+    "build": "rimraf dist && babel src -D --out-dir dist",
+    "migrate": "knex migrate:latest --knexfile src/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile src/knexfile.js",
+    "prettier": "prettier --write **/*.{js,json,yml,yaml,md}",
+    "make:seeder": "knex seed:make --knexfile src/knexfile.js",
+    "make:migration": "knex migrate:make --knexfile src/knexfile.js",
+    "start:dev": "nodemon --watch .env --watch src --exec babel-node src --source-maps",
+    "test": "cross-env NODE_ENV=test mocha --exit --recursive --require @babel/register test",
+    "test:coverage": "cross-env NODE_ENV=test nyc --require @babel/register --reporter lcov --reporter text mocha --exit --recursive test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{md,yml,yml,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "keywords": [
+    "javascript",
+    "node",
+    "express",
+    "es6",
+    "api"
+  ],
+  "private": true,
+  "author": "Moein Alizadeh <truemoein@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@sentry/node": "^4.6.5",
+    "body-parser": "^1.18.3",
+    "bookshelf": "^0.14.2",
+    "boom": "^7.3.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "http-status-codes": "^1.3.2",
+    "joi": "^14.3.1",
+    "knex": "^0.16.3",
+    "lodash": "^4.17.11",
+    "morgan": "^1.9.1",
+    "serve-favicon": "^2.5.0",
+    "swagger-jsdoc": "^3.2.8",
+    "swagger-ui-dist": "^3.22.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.8.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "chai": "^4.2.0",
+    "codecov": "^3.2.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.15.3",
+    "eslint-config-leapfrog": "^2.0.0-beta.0",
+    "eslint-config-prettier": "^4.1.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10",
+    "nyc": "^13.3.0",
+    "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
+    "supertest": "^4.0.2"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.5.1"
+  }
+}
