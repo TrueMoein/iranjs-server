@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import userRoutes from './routes/userRoutes';
+import registrationRoutes from './routes/registrationRoutes';
 
 /**
  * Contains all API routes for the application.
@@ -18,5 +19,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/users', userRoutes);
+router.use('/register', registrationRoutes);
 
 export default router;

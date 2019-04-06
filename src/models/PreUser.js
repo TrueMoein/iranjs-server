@@ -1,24 +1,15 @@
 import bookshelf from '../db';
 
-const TABLE_NAME = 'pre_users';
-
 /**
- * User model.
+ * pre_user model.
  */
-class User extends bookshelf.Model {
+class PreUser extends bookshelf.Model {
   /**
    * Get table name.
    */
   get tableName() {
-    return TABLE_NAME;
-  }
-
-  /**
-   * Table has timestamps.
-   */
-  get hasTimestamps() {
-    return true;
+    return 'pre_users';
   }
 }
 
-export default User;
+export default PreUser;

@@ -8,7 +8,7 @@ export function up(knex) {
   return knex.schema.createTable('pre_users', table => {
     table.increments();
     table.string('email').notNullable();
-    table.string('token').notNullable();
+    table.string('token').notNullable().index();
   });
 }
 

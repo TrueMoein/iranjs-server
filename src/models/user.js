@@ -1,7 +1,5 @@
 import bookshelf from '../db';
 
-const TABLE_NAME = 'users';
-
 /**
  * User model.
  */
@@ -10,7 +8,7 @@ class User extends bookshelf.Model {
    * Get table name.
    */
   get tableName() {
-    return TABLE_NAME;
+    return 'users';
   }
 
   /**
@@ -18,6 +16,13 @@ class User extends bookshelf.Model {
    */
   get hasTimestamps() {
     return true;
+  }
+
+  /**
+   * Set hidden fields.
+   */
+  get hidden() {
+    return ['password']
   }
 }
 

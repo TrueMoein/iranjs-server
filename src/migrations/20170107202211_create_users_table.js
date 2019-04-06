@@ -7,10 +7,10 @@
 export function up(knex) {
   return knex.schema.createTable('users', table => {
     table.increments();
-    table.string('username').nullable();
-    table.string('fullName').nullable();
+    table.string('username').notNull();
+    table.string('fullName').notNull();
     table.string('email').notNull();
-    table.string('password').nullable();
+    table.string('password').notNull();
     table.string('avatar').nullable();
     table
       .timestamp('created_at')
