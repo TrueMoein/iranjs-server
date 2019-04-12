@@ -17,13 +17,6 @@ class User extends bookshelf.Model {
   get hasTimestamps() {
     return true;
   }
-
-  /**
-   * Set hidden fields.
-   */
-  get hidden() {
-    return ['password']
-  }
 }
 
 export default User;

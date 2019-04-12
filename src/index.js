@@ -37,7 +37,6 @@ app.locals.version = process.env.APP_VERSION;
 
 // This request handler must be the first middleware on the app
 app.use(Sentry.Handlers.requestHandler());
-
 app.use(favicon(path.join(__dirname, '/../public', 'favicon.ico')));
 app.use(cors());
 app.use(helmet());

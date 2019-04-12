@@ -10,6 +10,8 @@
     "sourceType": "module"
   },
   "rules": {
+    "semi":"error",
+    "require-jsdoc":"off",
     "camelcase": [
       "error",
       {
