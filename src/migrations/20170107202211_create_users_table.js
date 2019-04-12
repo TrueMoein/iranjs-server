@@ -9,7 +9,7 @@ export function up(knex) {
     table.increments();
     table.string('username').notNull().unique();
     table.string('email').notNull().unique();
-    table.string('fullName').notNull();
+    table.string('fullname').notNull();
     table.string('password').notNull();
     table.string('avatar').nullable();
     table

@@ -1,23 +1,33 @@
 import User from '../models/User';
 import jwt from 'jsonwebtoken';
 import { encrypt, decrypt } from '../utils/password';
+import Joi from 'joi';
+import validate from '../utils/validate';
+
+const userSchema = Joi.object().keys({
+  fullname: Joi.string().min(5).max(50).required(),
+  email: Joi.string().email().required(),
+  username: Joi.string().alphanum().min(3).max(30).required(),
+  password: Joi.string().min(6).max(50)
+});
 
 export async function register(req, res, next) {
   try {
     const {email, username, password, fullname} = req.body;
 
-    const user = await new User({
+    const newUser = {
       email,
       username,
-      password: encrypt(password),
+      password,
       fullname
-    }).save();
+    };
 
-    res.send({
-      username: user.attributes.username,
-      fullname: user.attributes.fullname,
-      email: user.attributes.email,
-    });
+    await validate(newUser, userSchema);
+
+    await new User({...newUser, password: encrypt(password)}).save();
+
+    res.send({message: 'ثبت نام با موفقیت انجام شد.'});
+
   } catch(e) {
     next(e);
   }
@@ -41,6 +51,7 @@ export async function login(req, res, next) {
       }
 
     }
+    
     res.send({error: 'اطلاعات وارد شده صحیح نمی‌باشد.'});
   } catch(e) {
     next(e);
