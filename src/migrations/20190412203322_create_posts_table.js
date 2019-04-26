@@ -1,12 +1,15 @@
 /**
- * Create table `table_name`.
+ * Create table `posts`.
  *
  * @param   {object} knex
  * @returns {Promise}
  */
 export function up(knex) {
-  return knex.schema.createTable('table_name', table => {
+  return knex.schema.createTable('posts', table => {
     table.increments();
+    table.string('title');
+    table.text('body');
+    table.text('excerpt');
     table
       .timestamp('created_at')
       .notNull()
@@ -19,11 +22,11 @@ export function up(knex) {
 }
 
 /**
- * Drop `table_name`.
+ * Drop `posts`.
  *
  * @param   {object} knex
  * @returns {Promise}
  */
 export function down(knex) {
-  return knex.schema.dropTable('table_name');
+  return knex.schema.dropTable('posts');
 }
